@@ -56,10 +56,10 @@ for feature in feature_names:
     else:
         user_inputs[feature] = st.sidebar.number_input(feature, value=default_values[feature])
 
-# ✅ Convert inputs to DataFrame
+#  Convert inputs to DataFrame
 input_data = pd.DataFrame([user_inputs])
 
-# ✅ Align columns exactly as seen during training
+#  Align columns exactly as seen during training
 expected_columns = list(scaler.feature_names_in_)  # Columns seen by scaler at fit time
 
 # Add missing columns with 0 values
@@ -70,7 +70,7 @@ for col in expected_columns:
 # Drop any extra columns not seen at training time
 input_data = input_data[expected_columns]
 
-# ✅ Scale using the same scaler
+#  Scale using the same scaler
 input_data_scaled = pd.DataFrame(
     scaler.transform(input_data),
     columns=expected_columns
@@ -111,3 +111,4 @@ with right_col:
         st.write(f"Churn Probability: {probabilities[1]:.2%}")
         st.write(f"Retention Probability: {probabilities[0]:.2%}")
         st.markdown(f"### Output: **{label}**")
+
